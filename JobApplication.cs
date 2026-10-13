@@ -24,7 +24,13 @@ namespace JobApplicationTracker
 
         public int GetDaysSinceApplied()
         {
-            return (DateTime.Today - ApplicationDate.Date).Days;
+            return (DateTime.Now - ApplicationDate).Days;
+        }
+
+        public string GetSummary()
+        {
+            string response = ResponseDate.HasValue ? ResponseDate.Value.ToString("yyyy-MM-dd") : "N/A";
+            return $"Company: {CompanyName} as {PositionTitle}, Applied: {ApplicationDate.ToShortDateString("yyyy-MM-dd")}, Status: {Status}, Response Date: {response}, Salary Expectation: {SalaryExpectation}kr";
         }
     }
 }
