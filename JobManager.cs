@@ -59,7 +59,7 @@ namespace JobApplicationTracker
                     {
                         job.ResponseDate = DateTime.Today;
                     }
-                    Console.WriteLine("Status updated!");
+                    Console.WriteLine($"Status for {companyName} updated!");
                     run = false;
                 }
 
@@ -93,7 +93,8 @@ namespace JobApplicationTracker
         {
 
             Console.WriteLine("Status: 1: Applied 2: Interview 3: Offer 4: Rejected");
-                if (!int.TryParse(Console.ReadLine(), out int statusNumber))
+            
+            if (!int.TryParse(Console.ReadLine(), out int statusNumber))
             {
                 Console.WriteLine("Choose an option (1-4)");
                 return;
@@ -101,7 +102,7 @@ namespace JobApplicationTracker
 
             ApplicationStatus status = (ApplicationStatus)statusNumber;
             
-            var sortedlist = JobApplications.Where(app => app.Status == status).ToList();
+            List<JobApplication> sortedlist = JobApplications.Where(app => app.Status == status).ToList();
 
             if(sortedlist.Count == 0)
             {
@@ -147,8 +148,47 @@ namespace JobApplicationTracker
             }
             else
             {
-                Console.WriteLine("There currently is no average response time on applied jobs.");
+                Console.WriteLine("Currently no average response time.");
             }
+        }
+
+        public void SortByDate()
+        {
+            List<JobApplication> sortedByDate = JobApplications.OrderBy(job => job.ApplicationDate).ToList();
+
+            if (sortedByDate.Count == 0)
+            {
+                Console.WriteLine("Currently no applications in list");
+                return;
+            }
+
+            foreach (var application in sortedByDate)
+            {
+                Console.WriteLine(application.GetSummary());
+            }
+        }
+
+        public void RemoveApplication()
+        {
+            if (JobApplications.Count == 0)
+            {
+                Console.WriteLine("No applications to remove.");
+            }
+
+            for (int number = 0; number < JobApplications.Count; number++)
+                Console.WriteLine($"{number + 1}.{JobApplications[number].GetSummary()}");
+
+            Console.WriteLine("Number of application you want to remove: ");
+            int inputNumber = int.Parse(Console.ReadLine()!);
+
+            if (inputNumber < 0 || inputNumber >= JobApplications.Count)
+            {
+                Console.WriteLine("Invalid number.");
+                return;
+            }
+
+            JobApplications.RemoveAt(inputNumber - 1);
+            Console.WriteLine("Application removed successfully!");
         }
     }
 }
