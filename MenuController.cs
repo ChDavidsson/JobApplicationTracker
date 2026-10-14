@@ -4,8 +4,11 @@ namespace JobApplicationTracker
     {
         private JobManager manage = new JobManager();
 
+
         public void Start()
         {
+            manage.TestData();
+            
             bool running = true;
 
             while (running)

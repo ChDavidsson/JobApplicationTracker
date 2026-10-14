@@ -4,6 +4,36 @@ namespace JobApplicationTracker
     {
         List<JobApplication> JobApplications = new List<JobApplication>();
 
+        public void TestData()
+        {
+            JobApplications.Add(new JobApplication
+            {
+                CompanyName = "Gekås",
+                PositionTitle = "IT-support",
+                Status = ApplicationStatus.Applied,
+                ApplicationDate = new DateTime(2026, 04, 20),
+                SalaryExpectation = 32000
+            });
+
+            JobApplications.Add(new JobApplication
+            {
+                CompanyName = "IKEA",
+                PositionTitle = "IT-tekniker",
+                Status = ApplicationStatus.Interviewed,
+                ApplicationDate = new DateTime(2026, 03, 30),
+                SalaryExpectation = 38000
+            });
+
+            JobApplications.Add(new JobApplication
+            {
+                CompanyName = "Discord",
+                PositionTitle = "Operator",
+                Status = ApplicationStatus.Applied,
+                ApplicationDate = new DateTime(2024, 08, 12),
+                SalaryExpectation = 29000
+            });
+        }
+
         public void AddJob()
         {
             Console.WriteLine("Company name: ");
@@ -172,7 +202,9 @@ namespace JobApplicationTracker
         {
             if (JobApplications.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No applications to remove.");
+                Console.ResetColor();
             }
 
             for (int number = 0; number < JobApplications.Count; number++)
@@ -181,7 +213,7 @@ namespace JobApplicationTracker
             Console.WriteLine("Number of application you want to remove: ");
             int inputNumber = int.Parse(Console.ReadLine()!);
 
-            if (inputNumber < 0 || inputNumber >= JobApplications.Count)
+            if (inputNumber < 1 || inputNumber > JobApplications.Count)
             {
                 Console.WriteLine("Invalid number.");
                 return;
@@ -189,6 +221,28 @@ namespace JobApplicationTracker
 
             JobApplications.RemoveAt(inputNumber - 1);
             Console.WriteLine("Application removed successfully!");
+        }
+
+        public void SetStatusColor(ApplicationStatus status)
+        {
+            switch (status)
+            {
+                case ApplicationStatus.Applied:
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+
+                case ApplicationStatus.Interviewed:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+
+                case ApplicationStatus.Offer:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                
+                case ApplicationStatus.Rejected:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+            }
         }
     }
 }
