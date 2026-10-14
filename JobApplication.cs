@@ -2,18 +2,18 @@ namespace JobApplicationTracker
 {
     public enum ApplicationStatus
     {
-        Applied,
-        Interviewed,
-        Offer,
-        Rejected
+        Applied = 1,
+        Interviewed = 2,
+        Offer = 3,
+        Rejected = 4
     }
 
     public class JobApplication
     {
         // CompanyName | string 
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
         // PositionTitle | string
-        public string PositionTitle { get; set; }
+        public string? PositionTitle { get; set; }
         // ApplicationDate | DateTime - Datum när ansökan skickades
         public DateTime ApplicationDate { get; set; }
         public ApplicationStatus Status { get; set; }
@@ -30,7 +30,7 @@ namespace JobApplicationTracker
         public string GetSummary()
         {
             string response = ResponseDate.HasValue ? ResponseDate.Value.ToString("yyyy-MM-dd") : "N/A";
-            return $"Company: {CompanyName} as {PositionTitle}, Applied: {ApplicationDate.ToShortDateString("yyyy-MM-dd")}, Status: {Status}, Response Date: {response}, Salary Expectation: {SalaryExpectation}kr";
+            return $"Company: {CompanyName} as {PositionTitle}, Applied: {ApplicationDate.ToString("yyyy-MM-dd")}, Status: {Status}, Response Date: {response}, Salary Expectation: {SalaryExpectation}kr";
         }
     }
 }
