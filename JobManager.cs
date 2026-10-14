@@ -66,7 +66,9 @@ namespace JobApplicationTracker
         {
             if (JobApplications.Count == 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Currently, there are no jobs to update.");
+                    Console.ResetColor();
                     return;
                 }
                 
@@ -95,7 +97,9 @@ namespace JobApplicationTracker
 
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Job application not found.");
+                    Console.ResetColor();
                 }
             }
     
@@ -105,7 +109,9 @@ namespace JobApplicationTracker
         {
             if (JobApplications.Count == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No available application");
+                Console.ResetColor();
                 return;
             }
 
@@ -113,7 +119,9 @@ namespace JobApplicationTracker
 
             foreach(var application in sortedby)
             {
+                StatusColor(application.Status);
                 Console.WriteLine(application.GetSummary());
+                Console.ResetColor();
                 Console.WriteLine($"{application.GetDaysSinceApplied()} days since applied ");
             }
 
@@ -142,7 +150,9 @@ namespace JobApplicationTracker
 
             foreach (var application in sortedlist)
             {
+                StatusColor(application.Status);
                 Console.WriteLine(application.GetSummary());
+                Console.ResetColor();
             }
         }
 
@@ -194,6 +204,7 @@ namespace JobApplicationTracker
 
             foreach (var application in sortedByDate)
             {
+                StatusColor(application.Status);
                 Console.WriteLine(application.GetSummary());
             }
         }
@@ -205,6 +216,7 @@ namespace JobApplicationTracker
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No applications to remove.");
                 Console.ResetColor();
+                return;
             }
 
             for (int number = 0; number < JobApplications.Count; number++)
@@ -215,7 +227,9 @@ namespace JobApplicationTracker
 
             if (inputNumber < 1 || inputNumber > JobApplications.Count)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid number.");
+                Console.ResetColor();
                 return;
             }
 
@@ -223,12 +237,12 @@ namespace JobApplicationTracker
             Console.WriteLine("Application removed successfully!");
         }
 
-        public void SetStatusColor(ApplicationStatus status)
+        public void StatusColor(ApplicationStatus status)
         {
             switch (status)
             {
                 case ApplicationStatus.Applied:
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.White;
                     break;
 
                 case ApplicationStatus.Interviewed:
