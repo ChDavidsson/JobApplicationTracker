@@ -1,0 +1,11 @@
+* Hur hjälpte LINQ dig att skriva renare kod?
+Med hjälp av så blev antalet kodrader mycket mindre och därav mer ren kod. Det var också lättare
+att förstå koden när det inte blir så mycket information att läsa.
+
+* Vilken del av projektet var mest utmanande, och hur löste du den?
+Jag skulle nog säga att LINQ-definitionerna var svårast att förstå sig på eftersom att vi lärde
+oss det i början av denna veckan. Jag tog hjälp av Claude med detta för att få en tydligare
+förståelse kring hur kodraderna är uppbyggda.
+
+Jag och Johan jobbade mycket ihop, vilket också var bra för att då fick man förklara kod för
+varandra och därmed blir det roligare och lättare att lära sig :)
