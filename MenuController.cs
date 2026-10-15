@@ -16,7 +16,7 @@ namespace JobApplicationTracker
             {
                 MenuHelper.ShowMenu();
                 
-                int userInput = int.Parse(Console.ReadLine()!);
+                int.TryParse(Console.ReadLine(), out int userInput);
 
                 //rensar text i console för ett renare program
                 Console.Clear();
@@ -52,7 +52,7 @@ namespace JobApplicationTracker
                     manage.RemoveApplication();
                     break;
 
-                    case 0:
+                    case 8:
                     Console.WriteLine("Exiting program..");
                     running = false; //Avbryter loopen
                     break;

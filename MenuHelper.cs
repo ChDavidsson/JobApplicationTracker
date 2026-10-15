@@ -14,7 +14,7 @@ namespace JobApplicationTracker
             Console.WriteLine("5. Show statistics");
             Console.WriteLine("6. Update an application");
             Console.WriteLine("7. Remove application");
-            Console.WriteLine("0. Exit program");
+            Console.WriteLine("8. Exit program");
             Console.ResetColor();
             Console.WriteLine("Choose an option:");
         }
