@@ -2,6 +2,7 @@ namespace JobApplicationTracker
 {
     public static class MenuHelper
     {
+        //Statisk meny som anropas från MenuController
         public static void ShowMenu()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;

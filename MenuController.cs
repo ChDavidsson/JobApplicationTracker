@@ -2,13 +2,14 @@ namespace JobApplicationTracker
 {
     public class MenuController
     {
+        // private innebär att bara MenuController har tillgång till JobManager-objektet via den här variabeln
         private JobManager manage = new JobManager();
-
-
+        
         public void Start()
         {
             manage.TestData();
             
+            //kör programmet tills användaren väljer att avsluta
             bool running = true;
 
             while (running)
@@ -17,8 +18,10 @@ namespace JobApplicationTracker
                 
                 int userInput = int.Parse(Console.ReadLine()!);
 
+                //rensar text i console för ett renare program
                 Console.Clear();
 
+                //Hoppar till användarens val i switch case
                 switch(userInput)
                 {
                     case 1:
@@ -51,11 +54,13 @@ namespace JobApplicationTracker
 
                     case 0:
                     Console.WriteLine("Exiting program..");
-                    running = false;
+                    running = false; //Avbryter loopen
                     break;
 
                     default:
-                    Console.WriteLine("Please choose again");
+                    Console.ForegroundColor = ConsoleColor.Red;     //Sätter färg
+                    Console.WriteLine("Invalid option, please choose again");   //Felmeddelande om användaren matar in ogiltigt val
+                    Console.ResetColor(); //Återställer färgen
                     break;
                 }
             }

@@ -1,5 +1,6 @@
 namespace JobApplicationTracker
 {
+    //Enum status
     public enum ApplicationStatus
     {
         Applied = 1,
@@ -10,6 +11,7 @@ namespace JobApplicationTracker
 
     public class JobApplication
     {
+        //Attributer
         public string? CompanyName { get; set; }
         public string? PositionTitle { get; set; }
         public DateTime ApplicationDate { get; set; }
@@ -17,15 +19,16 @@ namespace JobApplicationTracker
         public DateTime? ResponseDate { get; set; }
         public int SalaryExpectation { get; set; }
 
+        //Metod för att få antal dagar sen ansökan skickades 
         public int GetDaysSinceApplied()
         {
-            return (DateTime.Now - ApplicationDate).Days;
+            return (DateTime.Today - ApplicationDate).Days;
         }
-
+        //Metod för utskrift som anropas i JobManager
         public string GetSummary()
         {
-            string response = ResponseDate.HasValue ? ResponseDate.Value.ToString("yyyy-mm-dd") : "N/A";
-            return $"Company: {CompanyName} as {PositionTitle}, Applied: {ApplicationDate.ToString("yyyy-mm-dd")}, Status: {Status}, Response Date: {response}, Salary Expectation: {SalaryExpectation}kr";
+            string response = ResponseDate.HasValue ? ResponseDate.Value.ToString("yyyy-MM-dd") : "No response";
+            return $"Company: {CompanyName}, Position: {PositionTitle}, Applied: {ApplicationDate:yyyy-MM-dd}, Status: {Status}, Response Date: {response}, Salary Expectation: {SalaryExpectation}kr";
         }
     }
 }
