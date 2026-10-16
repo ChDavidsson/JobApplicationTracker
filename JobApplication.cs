@@ -16,7 +16,7 @@ namespace JobApplicationTracker
         public string? PositionTitle { get; set; }
         public DateTime ApplicationDate { get; set; }
         public ApplicationStatus Status { get; set; }
-        public DateTime? ResponseDate { get; set; }
+        public DateTime? ResponseDate { get; set; } //? för att värdet kan vara null om företaget inte har hört av sig
         public int SalaryExpectation { get; set; }
 
         //Metod för att få antal dagar sen ansökan skickades 
