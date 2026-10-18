@@ -14,8 +14,10 @@ namespace JobApplicationTracker
 
             while (running)
             {
+                //Visar meny från MenuHelper
                 MenuHelper.ShowMenu();
                 
+                //Gör om input till siffra
                 int.TryParse(Console.ReadLine(), out int userInput);
 
                 //rensar text i console för ett renare program
@@ -23,7 +25,7 @@ namespace JobApplicationTracker
 
                 //Hoppar till användarens val i switch case
                 switch(userInput)
-                {
+                {   
                     case 1:
                     manage.AddJob();
                     break;
