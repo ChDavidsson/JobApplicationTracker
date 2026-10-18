@@ -129,7 +129,8 @@ namespace JobApplicationTracker
                 }
 
                 JobApplication job = JobApplications[inputNumber - 1]; //inputNumber - 1 eftersom listan börjar på index 0
-                Console.WriteLine("Enter the new status (1. Applied, 2. Interviewed, 3. Offer, 4.Rejected)");
+
+                Console.WriteLine("Enter the new status (1.Applied, 2.Interviewed, 3.Offer, 4.Rejected)");
                 if (!int.TryParse(Console.ReadLine(),out int statusNumber) || statusNumber < 1 || statusNumber > 4) 
                 //Kollar att inmatningen är en siffra och mellan 1-4
                 {
@@ -183,7 +184,7 @@ namespace JobApplicationTracker
         public void ShowByStatus()
         {
 
-            Console.WriteLine("Status: 1: Applied 2: Interview 3: Offer 4: Rejected");
+            Console.WriteLine("Status: 1:Applied, 2:Interview, 3:Offer, 4:Rejected");
             
             if (!int.TryParse(Console.ReadLine(), out int statusNumber))
             {
@@ -313,6 +314,31 @@ namespace JobApplicationTracker
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Application removed successfully!");
             Console.ResetColor();
+        }
+
+        //Visa ansökningar äldre än 14 dagar
+        public void OlderThan14()
+        {
+            DateTime limit = DateTime.Today.AddDays(-14);
+
+            List<JobApplication> oldApplications = JobApplications
+                    .Where(app => app.ApplicationDate < limit)
+                    .ToList();
+
+            if (oldApplications.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("No applications older than 14 days");
+                Console.ResetColor();
+                return;
+            }
+
+            foreach (var application in oldApplications)
+            {
+                StatusColor(application.Status);
+                Console.WriteLine(application.GetSummary());
+                Console.ResetColor();
+            }
         }
         
         //Metod som sätter färg beroende på status, anropas innan en rad skrivs ut.
