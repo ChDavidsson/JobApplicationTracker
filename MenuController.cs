@@ -55,6 +55,10 @@ namespace JobApplicationTracker
                     break;
 
                     case 8:
+                    manage.OlderThan14();
+                    break;
+
+                    case 9:
                     Console.WriteLine("Exiting program..");
                     running = false; //Avbryter loopen
                     break;
