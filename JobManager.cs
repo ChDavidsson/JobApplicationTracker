@@ -335,6 +335,7 @@ namespace JobApplicationTracker
 
             foreach (var application in oldApplications)
             {
+                Console.WriteLine("--Applications older than 14 days--");
                 StatusColor(application.Status);
                 Console.WriteLine(application.GetSummary());
                 Console.ResetColor();
