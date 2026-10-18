@@ -66,12 +66,12 @@ namespace JobApplicationTracker
             Console.WriteLine("Position: ");
             string position = Console.ReadLine()!;
             Console.WriteLine("Status (1: Applied, 2: Interview, 3: Offer, 4: Rejected): ");
-            int statusNumber = int.Parse(Console.ReadLine()!); //Gör om siffran till motsvarande enum-värde
+            int.TryParse(Console.ReadLine()!, out int statusNumber); //Gör om siffran till motsvarande enum-värde
             ApplicationStatus status = (ApplicationStatus)statusNumber;
             Console.WriteLine("Application date (yyyy-mm-dd): ");
             DateTime date = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Salary expectation: ");
-            int salary = int.Parse(Console.ReadLine()!);
+            int.TryParse(Console.ReadLine()!, out int salary);
             
             //Skapar ett ny objekt av användarens input som läggs till i listan
             JobApplication job = new JobApplication
