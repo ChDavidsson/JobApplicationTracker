@@ -1,11 +1,10 @@
 namespace JobApplicationTracker
 {
-    public class MenuController
+    public static class MenuController
     {
-        // private innebär att bara MenuController har tillgång till JobManager-objektet via den här variabeln
-        private JobManager manage = new JobManager();
+        static JobManager manage = new JobManager();
         
-        public void Start()
+        public static void Start()
         {
             manage.TestData();
             
